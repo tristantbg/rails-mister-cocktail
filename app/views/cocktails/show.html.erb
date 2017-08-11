@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-6 col-sm-3">
       <h1><%= @cocktail.name %></h1>
-      <%= image_tag @cocktail.image %>
+      <%= cl_image_tag @cocktail.image, height: 300, width: 400, crop: :fill %>
       
       <ul id="doses">
         <% @doses.each do |dose| %>

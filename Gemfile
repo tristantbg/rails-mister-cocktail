@@ -58,6 +58,7 @@ gem 'rails-controller-testing', group: [ :test ]
 gem 'figaro'
 
 #Image upload
+gem 'carrierwave'
 gem 'cloudinary'
 
 #Front-end Gems
