@@ -1,18 +1,27 @@
-<h1><%= @cocktail.name %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-3">
+      <h1><%= @cocktail.name %></h1>
+      <%= image_tag @cocktail.image %>
+      
+      <ul id="doses">
+        <% @doses.each do |dose| %>
+        <li class="dose">
+          <%= dose.description %> <%= dose.ingredient.name %>
+          <%= link_to dose_path(dose), method: :delete do %>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
 
-<ul id="doses">
-  <% @doses.each do |dose| %>
-  <li class="dose">
-    <%= dose.description %> <%= dose.ingredient.name %>
-    <%= link_to dose_path(dose), method: :delete do %>
-    <i class="fa fa-trash-o" aria-hidden="true"></i>
-    <% end %>
-  </li>
-  <% end %>
-  
-  <li>
-    <%= link_to new_cocktail_dose_path(@cocktail) do %>
-      <i class="fa fa-plus-circle" aria-hidden="true"></i> Add new dose
-    <% end %>
-  </li>
-</ul>
+      <div class="row">
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :description %>
+        <%= f.association :ingredient %>
+        <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

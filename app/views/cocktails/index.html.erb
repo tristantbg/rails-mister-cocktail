@@ -1,33 +1,37 @@
-<div class="container text-center">
+<div class="container">
   <div class="row">
     <h1>COCKTAILS</h1>
     <table class="table table-striped">
       <thead>
         <th>Name</th>
-        <th>Show</th>
-        <th>Edit</th>
-        <th>Delete</th>
+        <th>Image</th>
+        <th>Action</th>
       </thead>
       <tbody>
         <% @cocktails.each do |cocktail| %>
         <tr>
-          <td><%= cocktail.name %></td>
+          <td>
+            <%= cocktail.name %>
+          </td>
+          <td>
+            <% if cocktail.image %>
+              <%= image_tag cocktail.image, width: "300px" %>
+            <% end %>
+          </td>
           <td><%= link_to cocktail_path(cocktail) do %>
-              <i class="fa fa-eye" aria-hidden="true"></i>
+            <i class="fa fa-eye" aria-hidden="true"></i>
             <% end %>
-          </td>
-          <td><%= link_to edit_cocktail_path(cocktail) do %>
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <%= link_to edit_cocktail_path(cocktail) do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             <% end %>
-          </td>
-          <td><%= link_to cocktail_path(cocktail), method: :delete do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <%= link_to cocktail_path(cocktail), method: :delete do %>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
             <% end %>
           </td>
         </tr>
-      <% end %>
+        <% end %>
       </tbody>
     </table>
-      <%= link_to "new", new_cocktail_path, class: "btn btn-primary" %>
+    <%= link_to "new", new_cocktail_path, class: "btn btn-primary" %>
   </div>
 </div>

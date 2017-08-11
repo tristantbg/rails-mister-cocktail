@@ -34,7 +34,16 @@ class DosesController < ApplicationController
 
   def destroy
     @dose = Dose.find(params[:id])
-    @dose.destroy
+    @cocktail = @dose.cocktail
+    respond_to do |format|
+      if @dose.destroy
+        format.html { redirect_to cocktail_path(@cocktail), notice: 'Dose was successfully destroyed.' }
+        format.json { render :show, status: :created, location: @dose }
+      else
+        format.html { render :new }
+        format.json { render json: @dose.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

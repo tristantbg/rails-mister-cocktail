@@ -10,7 +10,7 @@ cocktails = JSON.parse(open("http://www.thecocktaildb.com/api/json/v1/1/filter.p
 ingredients = JSON.parse(open("http://www.thecocktaildb.com/api/json/v1/1/list.php?i=list").read)["drinks"];
 
 cocktails.each do |cocktail|
-  Cocktail.create(name: cocktail["strDrink"])
+  Cocktail.create(name: cocktail["strDrink"], image: cocktail["strDrinkThumb"])
 end
 
 ingredients.each do |ingredient|
